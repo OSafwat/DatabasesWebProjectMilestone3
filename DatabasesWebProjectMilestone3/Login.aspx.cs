@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,18 +18,33 @@ namespace DatabasesWebProjectMilestone3
 
         }
 
-        protected void login_button(object sender, EventArgs e)
+        protected void login_function(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
             string mobileNum = mobile_number.Text;
             string pass = password.Text;
-            SqlCommand loginproc = new SqlCommand("AccountLoginValidation", conn);
-            loginproc.Parameters.Add(new SqlParameter("@MobileNo", mobileNum));
-            loginproc.Parameters.Add(new SqlParameter("@password", pass));
 
-            SqlParameter success = loginproc.Parameters.Add("@success", SqlDbType.Int);
+            string loginQuery = "SELECT dbo.AccountLoginValidation(@MobileNo, @password)";
+            SqlCommand loginFunction = new SqlCommand(loginQuery, conn);
+
+            loginFunction.Parameters.Add(new SqlParameter("@MobileNo", mobileNum));
+            loginFunction.Parameters.Add(new SqlParameter("@password", pass));
+
+
+            conn.Open();
+            bool success = (bool)loginFunction.ExecuteScalar();
+            conn.Close();
+
+
+            if (success)
+            {
+                Response.Write("Hello");
+            } else
+            {
+                Response.Write("meow meow");
+            }
         }
     }
 }
