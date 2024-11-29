@@ -74,7 +74,7 @@
         <div class="wlp-whitespace-only-element-expansion">
             <asp:Label runat="server" Text="If you would like to view the total usage of a certain account on each subscribed plan from a certain date, please input the required account's phone number and the date, then press this button. The result will be shown in a table below!" ID="Label1"></asp:Label>
             <br />
-            <!--Put service plan id textbox-->
+            <!--Put mobile number textbox-->
             <asp:Label runat="server" Text="Mobile Number: " ID="Label2"></asp:Label>
             <asp:TextBox ID="account_usage_plan_mobile_number_textbox" runat="server"></asp:TextBox>
             <br />
@@ -88,6 +88,36 @@
             <asp:GridView ID="account_usage_plan_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             <br />
         </div>
+
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="If you would like to remove all benefits offered to the input account for a certain input plan ID, please input the required account's phone number and the required plan ID, then press this button. The result will be shown in a table below!" ID="Label4"></asp:Label>
+            <br />
+            <!--Put mobile number textbox-->
+            <asp:Label runat="server" Text="Mobile Number: " ID="Label5"></asp:Label>
+            <asp:TextBox ID="benefits_account_mobile_number_textbox" runat="server"></asp:TextBox>
+            <br />
+            <!--Put plan ID textbox-->
+            <asp:Label runat="server" Text="Plan ID: " ID="Label6"></asp:Label>
+            <asp:TextBox ID="benefits_account_planID_textbox" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button runat="server" Text="View Data" OnClick="remove_plan_benefits_from_account"></asp:Button>&nbsp;</div>
+
+        <br />
+
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="If you would like to retrieve all SMS offers for a certain account, please input the required account's phone number, then press this button. The result will be shown in a table below!" ID="Label7"></asp:Label>
+            <br />
+            <!--Put mobile number textbox-->
+            <asp:Label runat="server" Text="Mobile Number: " ID="Label8"></asp:Label>
+            <asp:TextBox ID="SMS_offers_for_account_mobile_number_textbox" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button runat="server" Text="View Data" OnClick="SMS_offers_for_account"></asp:Button>&nbsp;</div>
+
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;
+            <asp:GridView ID="SMS_offers_for_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
+            <br />
+        </div>
+
 
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>

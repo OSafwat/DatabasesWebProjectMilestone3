@@ -153,5 +153,49 @@ namespace DatabasesWebProjectMilestone3
             account_usage_plan_data.DataBind();
             conn.Close();
         }
+
+        protected void remove_plan_benefits_from_account(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string procQuery = "Benefits_Account";
+            SqlCommand benefits_account_proc = new SqlCommand(procQuery, conn);
+
+            benefits_account_proc.CommandType = CommandType.StoredProcedure;
+
+            string mobileNo = benefits_account_mobile_number_textbox.Text;
+            int ID = Int16.Parse(benefits_account_planID_textbox.Text);
+
+            benefits_account_proc.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
+            benefits_account_proc.Parameters.Add(new SqlParameter("@planID", ID));
+
+
+            conn.Open();
+            benefits_account_proc.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        protected void SMS_offers_for_account(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string functionQuery = "SELECT * FROM dbo.Account_SMS_Offers(@MobileNo)";
+            SqlCommand SMS_offers_for_account_function = new SqlCommand(functionQuery, conn);
+
+            string mobileNo = SMS_offers_for_account_mobile_number_textbox.Text;
+
+            SMS_offers_for_account_function.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
+
+            conn.Open();
+            SqlDataAdapter functionAdapter = new SqlDataAdapter(SMS_offers_for_account_function);
+            DataTable SMSoffersForAccountData = new DataTable();
+            functionAdapter.Fill(SMSoffersForAccountData);
+
+            SMS_offers_for_account_data.DataSource = SMSoffersForAccountData;
+            SMS_offers_for_account_data.DataBind();
+            conn.Close();
+        }
     }
 }
