@@ -40,10 +40,18 @@ namespace DatabasesWebProjectMilestone3
 
             if (success)
             {
-                Response.Write("Hello");
+                Response.Write("Customer Logging in");
+                
             } else
             {
-                Response.Write("meow meow");
+                if (pass.Equals("admin"))
+                {
+                    Response.Redirect("Admin.aspx");
+                }
+                else
+                {
+                    Response.Write("Login Failed");
+                }
             }
         }
     }
