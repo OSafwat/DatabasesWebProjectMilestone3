@@ -22,14 +22,13 @@ namespace DatabasesWebProjectMilestone3
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
-            int id = Int16.Parse(username.Text);
+            string mobileNum = mobile_number.Text;
             string pass = password.Text;
-            SqlCommand loginproc = new SqlCommand("userLogin", conn);
-            loginproc.Parameters.Add(new SqlParameter("@id", id));
+            SqlCommand loginproc = new SqlCommand("AccountLoginValidation", conn);
+            loginproc.Parameters.Add(new SqlParameter("@MobileNo", mobileNum));
             loginproc.Parameters.Add(new SqlParameter("@password", pass));
 
             SqlParameter success = loginproc.Parameters.Add("@success", SqlDbType.Int);
-            SqlParameter type = loginproc.Parameters.Add("@type", SqlDbType.Int);
         }
     }
 }
