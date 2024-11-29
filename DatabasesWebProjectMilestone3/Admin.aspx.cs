@@ -34,5 +34,25 @@ namespace DatabasesWebProjectMilestone3
             customer_account_data.DataBind();
             conn.Close();
         }
+
+        //PhysicalStoreVouchers
+
+        protected void physical_shop_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string viewQuery = "SELECT * FROM dbo.PhysicalStoreVouchers";
+            SqlCommand physicalStoreVouchersView = new SqlCommand(viewQuery, conn);
+
+            conn.Open();
+            SqlDataAdapter viewAdapter = new SqlDataAdapter(physicalStoreVouchersView);
+            DataTable physicalStoreData = new DataTable();
+            viewAdapter.Fill(physicalStoreData);
+
+            physical_shop_voucher_data.DataSource = physicalStoreData;
+            physical_shop_voucher_data.DataBind();
+            conn.Close();
+        }
     }
 }

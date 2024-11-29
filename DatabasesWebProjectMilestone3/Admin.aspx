@@ -21,7 +21,36 @@
             <asp:GridView ID="customer_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;</div>
         <br />
+        <div class="wlp-whitespace-only-element-expansion">
+            <asp:Label runat="server" Text="If you would like to view all physical shops along with their redeemed vouchers, press this button. The result will be shown in a table below!" ID="ctl31"></asp:Label>
+            <br />
+        <asp:Button runat="server" Text="View All Shops" OnClick="physical_shop_data_retrieval"></asp:Button>&nbsp;</div>
+        <br />
+        <div class="">
+            <asp:GridView ID="physical_shop_voucher_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
+            &nbsp;</div>
+        <br />
         <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+        <div class="wlp-whitespace-only-element-expansion">&nbsp;</div>
+
+
+
     </form>
 </body>
 </html>

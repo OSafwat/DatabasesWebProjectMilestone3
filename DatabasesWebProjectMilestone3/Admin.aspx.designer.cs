@@ -49,5 +49,23 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView customer_account_data;
+
+        /// <summary>
+        /// ctl31 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ctl31;
+
+        /// <summary>
+        /// physical_shop_voucher_data control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView physical_shop_voucher_data;
     }
 }
