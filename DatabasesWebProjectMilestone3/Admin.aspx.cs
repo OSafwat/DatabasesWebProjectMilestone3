@@ -189,12 +189,23 @@ namespace DatabasesWebProjectMilestone3
             SMS_offers_for_account_function.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
 
             conn.Open();
-            SqlDataAdapter functionAdapter = new SqlDataAdapter(SMS_offers_for_account_function);
-            DataTable SMSoffersForAccountData = new DataTable();
-            functionAdapter.Fill(SMSoffersForAccountData);
+            try
+            {
+                SqlDataAdapter functionAdapter = new SqlDataAdapter(SMS_offers_for_account_function);
+                DataTable SMSoffersForAccountData = new DataTable();
+                functionAdapter.Fill(SMSoffersForAccountData);
 
-            SMS_offers_for_account_data.DataSource = SMSoffersForAccountData;
-            SMS_offers_for_account_data.DataBind();
+                SMS_offers_for_account_data.DataSource = SMSoffersForAccountData;
+                SMS_offers_for_account_data.DataBind();
+            }
+            catch (Exception e1)
+            {
+                Label100.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
+                    "make sure the database is set up and complete.";
+                conn.Close();
+                return;
+            }
+            Label100.Text = "Success!";
             conn.Close();
         }
     }

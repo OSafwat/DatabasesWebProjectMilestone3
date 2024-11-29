@@ -285,6 +285,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox SMS_offers_for_account_mobile_number_textbox;
 
         /// <summary>
+        /// Label100 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label100;
+
+        /// <summary>
         /// SMS_offers_for_account_data control.
         /// </summary>
         /// <remarks>
