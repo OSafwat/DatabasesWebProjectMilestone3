@@ -22,6 +22,7 @@
             &nbsp;
         </div>
         <br />
+
         <div class="">
             <asp:Label runat="server" Text="If you would like to view all physical shops along with their redeemed vouchers, press this button. The result will be shown in a table below!" ID="physical_shops_label"></asp:Label>
             <br />
@@ -119,6 +120,55 @@
             <br />
         </div>
 
+
+        <div class="">
+            <asp:Label runat="server" Text="If you would like to retrieve details of all wallets along with their customer
+            names, then press this button. The result will be shown in a table below!" ID="customer_wallet_label"></asp:Label>
+            <br />
+            <asp:Button runat="server" Text="View Data" OnClick="customer_wallet_account_view"></asp:Button>&nbsp;</div>
+            <br />
+            <asp:Label runat="server" ID="Label11"></asp:Label>
+        <div class="">&nbsp;
+            <asp:GridView ID="customer_wallet_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
+            <br />
+        </div>
+
+
+        <div class="">
+            <asp:Label runat="server" Text="If you would like to view all E shops along with their redeemed vouchers, press this button. The result will be shown in a table below!" ID="Label9"></asp:Label>
+            <br />
+        <asp:Button runat="server" Text="View All Shops" OnClick="E_shop_data_retrieval"></asp:Button>&nbsp;</div>
+        <br />
+
+        <div class="">
+            <asp:GridView ID="E_shop_voucher_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
+            &nbsp;</div>
+        <br />
+
+
+        <div class="">
+            <asp:Label runat="server" Text="If you would like to view details for all payments along with their
+ corresponding accounts, press this button. The result will be shown in a table below!" ID="Label10"></asp:Label>
+            <br />
+        <asp:Button runat="server" Text="View Data" OnClick="account_payment_data_retrieval"></asp:Button>&nbsp;</div>
+        <br />
+
+        <div class="">
+            <asp:GridView ID="account_payment_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
+            &nbsp;</div>
+        <br />
+
+
+        <div class="">
+            <asp:Label runat="server" Text="If you would like to view the number of cashback transactions per each wallet, press this button. The result will be shown in a table below!" ID="Label12"></asp:Label>
+            <br />
+        <asp:Button runat="server" Text="View Data" OnClick="cashback_transactions_per_wallet_data_retrieval"></asp:Button>&nbsp;</div>
+        <br />
+
+        <div class="">
+            <asp:GridView ID="cashback_transactions_per_wallet_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
+            &nbsp;</div>
+        <br />
 
 
     </form>

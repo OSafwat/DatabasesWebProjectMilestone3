@@ -208,5 +208,78 @@ namespace DatabasesWebProjectMilestone3
             Label100.Text = "Success!";
             conn.Close();
         }
+
+        protected void customer_wallet_account_view(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string viewQuery = "SELECT * FROM dbo.CustomerWallet";
+            SqlCommand customerWalletAccountsView = new SqlCommand(viewQuery, conn);
+
+            conn.Open();
+            SqlDataAdapter viewAdapter = new SqlDataAdapter(customerWalletAccountsView);
+            DataTable walletData = new DataTable();
+            viewAdapter.Fill(walletData);
+
+            customer_wallet_account_data.DataSource = walletData;
+            customer_wallet_account_data.DataBind();
+            conn.Close();
+        }
+
+        protected void E_shop_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string viewQuery = "SELECT * FROM dbo.E_shopVouchers";
+            SqlCommand E_StoreVouchersView = new SqlCommand(viewQuery, conn);
+
+            conn.Open();
+            SqlDataAdapter viewAdapter = new SqlDataAdapter(E_StoreVouchersView);
+            DataTable E_StoreData = new DataTable();
+            viewAdapter.Fill(E_StoreData);
+
+            E_shop_voucher_data.DataSource = E_StoreData;
+            E_shop_voucher_data.DataBind();
+            conn.Close();
+        }
+
+
+        protected void account_payment_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string viewQuery = "SELECT * FROM accountPayments";
+            SqlCommand accountPaymentsView = new SqlCommand(viewQuery, conn);
+
+            conn.Open();
+            SqlDataAdapter viewAdapter = new SqlDataAdapter(accountPaymentsView);
+            DataTable accountPaymentData = new DataTable();
+            viewAdapter.Fill(accountPaymentData);
+
+            account_payment_data.DataSource = accountPaymentData;
+            account_payment_data.DataBind();
+            conn.Close();
+        }
+
+        protected void cashback_transactions_per_wallet_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string viewQuery = "SELECT * FROM Num_of_cashback";
+            SqlCommand cashbackTransactionsPerWalletView = new SqlCommand(viewQuery, conn);
+
+            conn.Open();
+            SqlDataAdapter viewAdapter = new SqlDataAdapter(cashbackTransactionsPerWalletView);
+            DataTable cashbackTransactionsPerWalletData = new DataTable();
+            viewAdapter.Fill(cashbackTransactionsPerWalletData);
+
+            cashback_transactions_per_wallet_data.DataSource = cashbackTransactionsPerWalletData;
+            cashback_transactions_per_wallet_data.DataBind();
+            conn.Close();
+        }
     }
 }
