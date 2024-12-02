@@ -14,7 +14,6 @@ namespace DatabasesWebProjectMilestone3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void customer_data_view(object sender, EventArgs e)
@@ -106,8 +105,8 @@ namespace DatabasesWebProjectMilestone3
 
             account_plan_date_function.Parameters.Add(new SqlParameter("@Subscription_Date", date));
             account_plan_date_function.Parameters.Add(new SqlParameter("@Plan_id", servicePlanId));
-            
-            
+
+
 
             conn.Open();
             SqlDataAdapter functionAdapter = new SqlDataAdapter(account_plan_date_function);
@@ -205,7 +204,7 @@ namespace DatabasesWebProjectMilestone3
                 conn.Close();
                 return;
             }
-            Label100.Text = "Success!";
+            Response.Write("Success!");
             conn.Close();
         }
 
@@ -281,5 +280,159 @@ namespace DatabasesWebProjectMilestone3
             cashback_transactions_per_wallet_data.DataBind();
             conn.Close();
         }
+
+
+        protected void account_accepted_payments_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string procQuery = "Account_Payment_Points";
+
+            SqlCommand acceptedPaymentsAndTotalPointsForAccountInLastYear = new SqlCommand(procQuery, conn);
+            acceptedPaymentsAndTotalPointsForAccountInLastYear.CommandType = CommandType.StoredProcedure;
+
+            string mobileNo = account_accepted_payments_input.Text;
+
+            acceptedPaymentsAndTotalPointsForAccountInLastYear.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
+
+
+            SqlParameter totalNumberOfAcceptedTransactions = new SqlParameter("@TotalTransactions", SqlDbType.Int);
+            SqlParameter totalNumberOfPoints = new SqlParameter("@TotalPoints", SqlDbType.Int);
+
+            totalNumberOfAcceptedTransactions.Direction = ParameterDirection.Output;
+            totalNumberOfPoints.Direction = ParameterDirection.Output;
+
+            acceptedPaymentsAndTotalPointsForAccountInLastYear.Parameters.Add(totalNumberOfAcceptedTransactions);
+            acceptedPaymentsAndTotalPointsForAccountInLastYear.Parameters.Add(totalNumberOfPoints);
+
+            conn.Open();
+            acceptedPaymentsAndTotalPointsForAccountInLastYear.ExecuteNonQuery();
+            conn.Close();
+
+
+            account_accepted_payments_number.Text = "Number of accepted payment transactions: " + totalNumberOfAcceptedTransactions.Value;
+            account_accepted_payments_total_points.Text = "Total number of earned points: " + totalNumberOfPoints.Value;
+        }
+
+
+        protected void wallet_cashback_amount_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string functionQuery = "SELECT dbo.Wallet_Cashback_Amount(@WalletId, @PlanId)";
+            SqlCommand wallet_cashback_amount_function = new SqlCommand(functionQuery, conn);
+
+            int walletID = Int16.Parse(wallet_cashback_wallet_id_input.Text);
+            int planID = Int16.Parse(wallet_cashback_plan_id_input.Text);
+
+            wallet_cashback_amount_function.Parameters.Add(new SqlParameter("@WalletId", walletID));
+            wallet_cashback_amount_function.Parameters.Add(new SqlParameter("@PlanId", planID));
+
+            conn.Open();
+            try
+            {
+
+                int res = (int)wallet_cashback_amount_function.ExecuteScalar();
+                Label15.Text = "Result: " + res;
+            }
+            catch (Exception e1)
+            {
+                Label15.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
+                    "make sure the database is set up and complete.";
+                conn.Close();
+                return;
+            }
+            Response.Write("Success!");
+            conn.Close();
+        }
+
+
+        protected void wallet_transfer_amount_data_retrieval(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string functionQuery = "SELECT dbo.Wallet_Transfer_Amount(@WalletId, @PlanId)";
+            SqlCommand wallet_transfer_amount_function = new SqlCommand(functionQuery, conn);
+
+            int walletID = Int16.Parse(wallet_cashback_wallet_id_input.Text);
+            String start_date = wallet_transfer_amount_start_date_input.Text;
+            String end_date = wallet_transfer_amount_end_date_input.Text;
+
+            wallet_transfer_amount_function.Parameters.Add(new SqlParameter("@WalletId", walletID));
+            wallet_transfer_amount_function.Parameters.Add(new SqlParameter("@start_date", start_date));
+            wallet_transfer_amount_function.Parameters.Add(new SqlParameter("@end_date", end_date));
+
+            conn.Open();
+            try
+            {
+
+                double res = (double)wallet_transfer_amount_function.ExecuteScalar();
+                Label18.Text = "Result: " + res;
+            }
+            catch (Exception e1)
+            {
+                Label18.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
+                    "make sure the database is set up and complete.";
+                conn.Close();
+                return;
+            }
+            Response.Write("Success!");
+            conn.Close();
+        }
+
+
+        protected void wallet_mobileNo_verification(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string functionQuery = "SELECT dbo.Wallet_MobileNo(@MobileNo)";
+            SqlCommand wallet_mobileNo_verification_function = new SqlCommand(functionQuery, conn);
+
+            String mobileNo = wallet_mobileNo_verification_input.Text;
+
+            wallet_mobileNo_verification_function.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
+
+            conn.Open();
+            try
+            {
+
+                bool res = ((int)wallet_mobileNo_verification_function.ExecuteScalar() == 1);
+                Label24.Text = "Result: " + (res ? "It is linked." : "It is not linked.");
+            }
+            catch (Exception e1)
+            {
+                Label24.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
+                    "make sure the database is set up and complete.";
+                conn.Close();
+                return;
+            }
+            Response.Write("Success!");
+            conn.Close();
+        }
+
+        protected void total_points_account(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string procQuery = "Total_Points_Account";
+            SqlCommand total_points_account_proc = new SqlCommand(procQuery, conn);
+
+            total_points_account_proc.CommandType = CommandType.StoredProcedure;
+
+            string mobileNo = total_points_account_textbox.Text;
+
+            total_points_account_proc.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
+
+
+            conn.Open();
+            total_points_account_proc.ExecuteNonQuery();
+            conn.Close();
+        }
+
     }
 }
