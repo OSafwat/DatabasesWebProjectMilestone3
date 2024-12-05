@@ -23,13 +23,13 @@ namespace DatabasesWebProjectMilestone3
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
-            string mobileNum = mobile_number.Text;
+            string mobileNo = mobile_number.Text;
             string pass = password.Text;
 
             string loginQuery = "SELECT dbo.AccountLoginValidation(@MobileNo, @password)";
             SqlCommand loginFunction = new SqlCommand(loginQuery, conn);
 
-            loginFunction.Parameters.Add(new SqlParameter("@MobileNo", mobileNum));
+            loginFunction.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
             loginFunction.Parameters.Add(new SqlParameter("@password", pass));
 
 
@@ -40,8 +40,8 @@ namespace DatabasesWebProjectMilestone3
 
             if (success)
             {
-                Response.Write("Customer Logging in");
-                
+                Response.Redirect($"Customer.aspx?mobileNo={Server.UrlEncode(mobileNo)}");
+
             } else
             {
                 if (pass.Equals("admin"))
