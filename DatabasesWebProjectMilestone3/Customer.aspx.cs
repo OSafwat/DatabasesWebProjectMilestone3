@@ -51,6 +51,7 @@ namespace DatabasesWebProjectMilestone3
             all_shops(sender, e);
             account_highest_voucher(sender, e);
             ticket_amount_customer(sender, e);
+            subscribed_plans_months(sender, e);
         }
 
         protected void all_service_plans(object sender, EventArgs e)
@@ -98,6 +99,7 @@ namespace DatabasesWebProjectMilestone3
                 consumption_data.DataBind();
             } catch (Exception e1)
             {
+                conn.Close();
                 if (plan_name.Size == 0 || start_date.Size == 0 || end_date.Size == 0)
                 {
                     consumption_data_response.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
@@ -108,7 +110,6 @@ namespace DatabasesWebProjectMilestone3
                     consumption_data_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
-                conn.Close();
                 return;
             }
             consumption_data_response.Text = "Success!";
@@ -263,9 +264,9 @@ namespace DatabasesWebProjectMilestone3
                 result = (int)remainingPlanAmountFunc.ExecuteNonQuery();
             } catch (Exception e1)
             {
+                conn.Close();
                 remaining_plan_amount_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
-                conn.Close();
                 return;
             }
             remaining_plan_amount_response.Text = "Success!";
@@ -285,7 +286,6 @@ namespace DatabasesWebProjectMilestone3
             SqlCommand extraPlanAmountFunc = new SqlCommand(funcQuery, conn);
             extraPlanAmountFunc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
             extraPlanAmountFunc.Parameters.Add(new SqlParameter("@plan_name", extra_plan_amount_plan_name_input.Text));
-            conn.Open();
 
             int result = 0;
             try
@@ -295,9 +295,9 @@ namespace DatabasesWebProjectMilestone3
             }
             catch (Exception e1)
             {
+                conn.Close();
                 extra_plan_amount_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
-                conn.Close();
                 return;
             }
             extra_plan_amount_response.Text = "Success!";
@@ -407,6 +407,7 @@ namespace DatabasesWebProjectMilestone3
             }
             catch (Exception e1)
             {
+                conn.Close();
                 if (initiate_balance_payment_payment_method_input.Text.Length == 0)
                 {
                     initiate_plan_payment_response.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
@@ -417,7 +418,7 @@ namespace DatabasesWebProjectMilestone3
                     initiate_plan_payment_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
-                conn.Close();
+
                 return;
             }
             initiate_plan_payment_response.Text = "Success!";
@@ -455,6 +456,7 @@ namespace DatabasesWebProjectMilestone3
                 initiateBalancePaymentProc.ExecuteNonQuery();
             } catch (Exception e1)
             {
+                conn.Close();
                 if (initiate_balance_payment_payment_method_input.Text.Length == 0)
                 {
                     initiate_balance_payment_response.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
@@ -464,7 +466,6 @@ namespace DatabasesWebProjectMilestone3
                     initiate_balance_payment_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
-                conn.Close();
                 return;
             }
             initiate_balance_payment_response.Text = "Success!";
@@ -499,9 +500,9 @@ namespace DatabasesWebProjectMilestone3
                 redeemVoucherPaymentsProc.ExecuteNonQuery();
             } catch (Exception e1)
             {
+                conn.Close();
                 redeem_voucher_points_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
-                conn.Close();
                 return;
             }
             redeem_voucher_points_response.Text = "Success!";
