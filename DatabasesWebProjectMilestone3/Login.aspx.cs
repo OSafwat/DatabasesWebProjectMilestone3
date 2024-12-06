@@ -151,7 +151,7 @@ namespace DatabasesWebProjectMilestone3
                 return;
             }
 
-            string signupQuery = "INSERT INTO Customer_profile VALUES (" + nationalID + ", " + first_name + ", " + last_name + ", " + email + ", " + date_of_birth + ");";
+            string signupQuery = "INSERT INTO Customer_profile VALUES (" + nationalID + ", '" + first_name + "', '" + last_name + "', '" + email + "', '" + date_of_birth + "');";
             SqlCommand signupCommand = new SqlCommand(signupQuery, conn);
 
             conn.Open();
