@@ -252,7 +252,7 @@ namespace DatabasesWebProjectMilestone3
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
-            string funcQuery = "SELECT * FROM Remaining_plan_amount(@MobileNo, @plan_name)";
+            string funcQuery = "SELECT dbo.Remaining_plan_amount(@MobileNo, @plan_name)";
             SqlCommand remainingPlanAmountFunc = new SqlCommand(funcQuery, conn);
             remainingPlanAmountFunc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
             remainingPlanAmountFunc.Parameters.Add(new SqlParameter("@plan_name", remaining_plan_amount_plan_name_input.Text));
@@ -261,7 +261,7 @@ namespace DatabasesWebProjectMilestone3
             try
             {
                 conn.Open();
-                result = (int)remainingPlanAmountFunc.ExecuteNonQuery();
+                result = (int)remainingPlanAmountFunc.ExecuteScalar();
             } catch (Exception e1)
             {
                 conn.Close();
@@ -282,7 +282,7 @@ namespace DatabasesWebProjectMilestone3
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
-            string funcQuery = "SELECT * FROM Extra_plan_amount(@MobileNo, @plan_name)";
+            string funcQuery = "SELECT dbo.Extra_plan_amount(@MobileNo, @plan_name)";
             SqlCommand extraPlanAmountFunc = new SqlCommand(funcQuery, conn);
             extraPlanAmountFunc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
             extraPlanAmountFunc.Parameters.Add(new SqlParameter("@plan_name", extra_plan_amount_plan_name_input.Text));
