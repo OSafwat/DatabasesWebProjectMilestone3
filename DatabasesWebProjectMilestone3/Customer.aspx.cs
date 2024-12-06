@@ -81,8 +81,8 @@ namespace DatabasesWebProjectMilestone3
             SqlCommand consumptionFunction = new SqlCommand(funcQuery, conn);
 
             SqlParameter plan_name = new SqlParameter("@Plan_Name", consumption_display_plan_name_input.Text);
-            SqlParameter start_date = new SqlParameter("@start_date", consumption_display_start_date_input);
-            SqlParameter end_date = new SqlParameter("@end_date", consumption_display_end_date_input);
+            SqlParameter start_date = new SqlParameter("@start_date", consumption_display_start_date_input.Text);
+            SqlParameter end_date = new SqlParameter("@end_date", consumption_display_end_date_input.Text);
 
             consumptionFunction.Parameters.Add(plan_name);
             consumptionFunction.Parameters.Add(start_date);
