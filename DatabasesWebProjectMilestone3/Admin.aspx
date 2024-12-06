@@ -93,7 +93,7 @@
         </div>
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to remove all benefits offered to the input account for a certain input plan ID, please input the required account's phone number and the required plan ID, then press this button. The result will be shown in a table below!" ID="Label4"></asp:Label>
+            <asp:Label runat="server" Text="If you would like to remove all benefits offered to the input account for a certain input plan ID, please input the required account's phone number and the required plan ID, then press this button." ID="Label4"></asp:Label>
             <br />
             <br />
             <!--Put mobile number textbox-->

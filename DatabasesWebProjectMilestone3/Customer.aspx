@@ -16,11 +16,8 @@
         <asp:HiddenField ID="HiddenFieldMobileNo" runat="server" />
         <asp:HiddenField ID="HiddenFieldNationalID" runat="server" />
         
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view all service plans and their details, press this button. The result will be shown in a table below!" ID="service_plans_label"></asp:Label>
+            <asp:Label runat="server" Text="Service Plan Data" ID="service_plans_label"></asp:Label>
             <br />
-            <asp:Button runat="server" Text="View All Service Plans" OnClick="service_plan_view"></asp:Button>&nbsp;</div>
-        <br />
         <div class="">
             <asp:GridView ID="service_plan_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;
@@ -49,10 +46,8 @@
         <br />
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view all plans you aren't subscribed to, press this button. The result will be shown in a table below!" ID="unsubscribed_plans_label"></asp:Label>
+            <asp:Label runat="server" Text="Unsubscribed Plans Data" ID="unsubscribed_plans_label"></asp:Label>
             <br />
-            <asp:Button runat="server" Text="View All Unsubscribed Plans" OnClick="unsubscribed_plans_view"></asp:Button>&nbsp;</div>
-        <br />
         <div class="">
             <asp:GridView ID="unsubscribed_plans_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;
@@ -61,10 +56,8 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view your consumption of all current active plans, press this button. The result will be shown in a table below!" ID="Label4"></asp:Label>
+            <asp:Label runat="server" Text="Current Month Active Plans' Usage Data" ID="Label4"></asp:Label>
             <br />
-            <asp:Button runat="server" Text="View Consumption Of Active Plans" OnClick="active_plans_usage_data_retrieval"></asp:Button>&nbsp;</div>
-        <br />
         <div class="">
             <asp:GridView ID="active_plans_usage_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;

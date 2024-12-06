@@ -40,11 +40,17 @@ namespace DatabasesWebProjectMilestone3
                 string name = (String)cmd.ExecuteScalar();
                 customer_intro_label.Text = $"Welcome, {name}, {nationalID}!";
 
+                all_service_plans(sender, e);
+                unsubscribed_plans(sender, e);
+                usage_plan_currentmonth(sender, e);
+                cashback_wallet_customer(sender, e);
+                all_benefits(sender, e);
+                all_shops(sender, e);
                 conn.Close();
             }
         }
 
-        protected void service_plan_view(object sender, EventArgs e)
+        protected void all_service_plans(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -88,7 +94,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void unsubscribed_plans_view(object sender, EventArgs e)
+        protected void unsubscribed_plans(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -109,7 +115,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void active_plans_usage_data_retrieval(object sender, EventArgs e)
+        protected void usage_plan_currentmonth(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -128,7 +134,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void cashback_customer_wallet_data_retrieval(object sender, EventArgs e)
+        protected void cashback_wallet_customer(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -147,7 +153,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void active_benefits_view(object sender, EventArgs e)
+        protected void all_benefits(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -282,7 +288,7 @@ namespace DatabasesWebProjectMilestone3
         }
 
 
-        protected void shop_data_retrieval(object sender, EventArgs e)
+        protected void all_shops(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
