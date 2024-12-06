@@ -149,6 +149,7 @@ namespace DatabasesWebProjectMilestone3
                     Label29.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
+                conn.Close();
                 return;
             }
             Label29.Text = "Success!";
@@ -173,6 +174,8 @@ namespace DatabasesWebProjectMilestone3
             try
             {
                 conn.Open();
+                if (mobileNo.Length != 0)
+                    throw new Exception();
                 SqlDataAdapter functionAdapter = new SqlDataAdapter(account_usage_plan_function);
                 DataTable accountsPlanDateData = new DataTable();
                 functionAdapter.Fill(accountsPlanDateData);
@@ -196,6 +199,7 @@ namespace DatabasesWebProjectMilestone3
                     Label30.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
+                conn.Close();
                 return;
             }
             Label30.Text = "Success!";
@@ -231,6 +235,8 @@ namespace DatabasesWebProjectMilestone3
             {
                 conn.Open();
                 benefits_account_proc.ExecuteNonQuery();
+                if (mobileNo.Length != 0)
+                    throw new Exception();
 
             } catch (Exception e1)
             {
@@ -277,6 +283,8 @@ namespace DatabasesWebProjectMilestone3
 
                 SMS_offers_for_account_data.DataSource = SMSoffersForAccountData;
                 SMS_offers_for_account_data.DataBind();
+                if (mobileNo.Length != 0)
+                    throw new Exception();
             }
             catch (Exception e1)
             {
@@ -406,6 +414,8 @@ namespace DatabasesWebProjectMilestone3
 
                 conn.Open();
                 acceptedPaymentsAndTotalPointsForAccountInLastYear.ExecuteNonQuery();
+                if (mobileNo.Length != 0)
+                    throw new Exception();
 
             } catch (Exception e1)
             {
@@ -548,6 +558,8 @@ namespace DatabasesWebProjectMilestone3
 
                 bool res = ((int)wallet_mobileNo_verification_function.ExecuteScalar() == 1);
                 Label24.Text = "Result: " + (res ? "It is linked." : "It is not linked.");
+                if (mobileNo.Length != 0)
+                    throw new Exception();
             }
             catch (Exception e1)
             {
@@ -591,6 +603,8 @@ namespace DatabasesWebProjectMilestone3
             {
                 conn.Open();
                 total_points_account_proc.ExecuteNonQuery();
+                if (mobileNo.Length != 0)
+                    throw new Exception();
             }
             catch (Exception e1)
             {
