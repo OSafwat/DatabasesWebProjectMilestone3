@@ -81,11 +81,11 @@ namespace DatabasesWebProjectMilestone3
 
             conn.Open();
 
-            bool result = (int)nationalIDVerificationCommand.ExecuteNonQuery() == 0;
+            bool result = (int)nationalIDVerificationCommand.ExecuteScalar() == 0;
 
             conn.Close();
 
-            if (!result)
+            if (result)
             {
                 Response.Write("This national ID does not exist. Please sign up to create a new profile.");
                 return;
@@ -94,8 +94,7 @@ namespace DatabasesWebProjectMilestone3
 
 
 
-            string createAccountQuery = "INSERT INTO Customer_Account ('" + mobile_number + "', '" + password + "', 0.0, '" + account_type + "', GETDATE(), 'Active', 0, " + national_ID + ")";
-            
+            string createAccountQuery = "INSERT INTO Customer_Account VALUES ('" + mobile_number + "', '" + password + "', 0.0, '" + account_type + "', GETDATE(), 'Active', 0, " + national_ID + ")";
             SqlCommand createAccount = new SqlCommand(createAccountQuery, conn);
             conn.Open();
             try
@@ -109,6 +108,7 @@ namespace DatabasesWebProjectMilestone3
                 return;
             }
             Response.Write("Success!");
+            Response.Redirect($"Customer.aspx?mobileNo={Server.UrlEncode(mobile_number)}");
             conn.Close();
         }
 
@@ -120,7 +120,7 @@ namespace DatabasesWebProjectMilestone3
             string nationalID = national_id_input.Text;
             string first_name = first_name_input.Text;
             string last_name = last_name_input.Text;
-            string email = last_name_input.Text;
+            string email = email_input.Text;
             string date_of_birth = date_of_birth_input.Text;
             string mobile_number = generate_mobile_number();
 
@@ -140,11 +140,11 @@ namespace DatabasesWebProjectMilestone3
 
             conn.Open();
 
-            bool result = (int)nationalIDVerificationCommand.ExecuteNonQuery() == 0;
+            bool result = (int)nationalIDVerificationCommand.ExecuteScalar() == 0;
 
             conn.Close();
 
-            if (result)
+            if (!result)
             {
                 Response.Write("This national ID already exists in our database, please create an account instead of " +
                     "signing up again, or try a different national ID.");
@@ -240,7 +240,7 @@ namespace DatabasesWebProjectMilestone3
                 SqlCommand verification = new SqlCommand(verificationQuery, conn);
 
                 conn.Open();
-                result = (int)verification.ExecuteNonQuery() == 0;
+                result = (int)verification.ExecuteScalar() == 0;
                 conn.Close();
 
                 //string verification done
