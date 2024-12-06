@@ -7,10 +7,8 @@
     <title></title>
 </head>
 <body>
-    
     <form id="form1" runat="server">
         <div>
-            <asp:ScriptManager ID="ScriptManager1" runat="server"/>
             <asp:Label runat="server" Text="Welcome to the customer page!" ID="customer_intro_label"></asp:Label>
         </div>
         <br />
@@ -220,8 +218,6 @@
 
 
         <div class="">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
             <asp:Label runat="server" Text="If you would like to redeem a voucher, input the voucher's ID, then press this button." ID="Label16"></asp:Label>
             <br />
             <br />
@@ -231,8 +227,6 @@
            <br />
             <asp:Label runat="server" ID="redeem_voucher_points_response"></asp:Label> <br />
             <asp:Button runat="server" Text="Redeem Voucher" OnClick="redeem_voucher_points"></asp:Button>&nbsp;</div>
-                </ContentTemplate>
-                </asp:UpdatePanel>
         <br />
             <br />
 

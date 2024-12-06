@@ -40,16 +40,17 @@ namespace DatabasesWebProjectMilestone3
 
                 string name = (String)cmd.ExecuteScalar();
                 customer_intro_label.Text = $"Welcome, {name}, {nationalID}!";
-
-                all_service_plans(sender, e);
-                unsubscribed_plans(sender, e);
-                usage_plan_currentmonth(sender, e);
-                cashback_wallet_customer(sender, e);
-                top_successful_payments(sender, e);
-                all_benefits(sender, e);
-                all_shops(sender, e);
                 conn.Close();
             }
+            all_service_plans(sender, e);
+            unsubscribed_plans(sender, e);
+            usage_plan_currentmonth(sender, e);
+            cashback_wallet_customer(sender, e);
+            top_successful_payments(sender, e);
+            all_benefits(sender, e);
+            all_shops(sender, e);
+            account_highest_voucher(sender, e);
+            ticket_amount_customer(sender, e);
         }
 
         protected void all_service_plans(object sender, EventArgs e)
@@ -232,8 +233,6 @@ namespace DatabasesWebProjectMilestone3
 
             accountHighestVoucherProc.CommandType = CommandType.StoredProcedure;
 
-            Response.Write(HiddenFieldMobileNo.Value);
-
             SqlParameter voucherID = new SqlParameter("@VoucherID", SqlDbType.Int);
             voucherID.Direction = ParameterDirection.Output;
             accountHighestVoucherProc.Parameters.Add(voucherID);
@@ -241,7 +240,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Open();
 
             accountHighestVoucherProc.ExecuteNonQuery();
-            account_highest_voucher_result.Text = "Highest Voucher Value Available To You: " + voucherID.Value;
+            account_highest_voucher_result.Text = "Voucher ID With The Highest Value Available To You: " + voucherID.Value;
 
             conn.Close();
         }
@@ -273,6 +272,7 @@ namespace DatabasesWebProjectMilestone3
             remaining_plan_amount_result.Text = "Remaining Amount: " + result;
 
             conn.Close();
+
         }
 
 
@@ -506,6 +506,7 @@ namespace DatabasesWebProjectMilestone3
             }
             redeem_voucher_points_response.Text = "Success!";
             conn.Close();
+            
         }
 
     }
