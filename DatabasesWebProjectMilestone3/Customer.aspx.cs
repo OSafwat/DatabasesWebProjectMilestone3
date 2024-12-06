@@ -39,7 +39,7 @@ namespace DatabasesWebProjectMilestone3
                 cmd = new SqlCommand(nameQuery, conn);
 
                 string name = (String)cmd.ExecuteScalar();
-                customer_intro_label.Text = $"Welcome, {name}, {nationalID}!";
+                customer_intro_label.Text = $"Welcome, {name}, {nationalID}, {mobileNo}!";
                 conn.Close();
             }
             all_service_plans(sender, e);
@@ -50,7 +50,7 @@ namespace DatabasesWebProjectMilestone3
             all_benefits(sender, e);
             all_shops(sender, e);
             account_highest_voucher(sender, e);
-            ticket_amount_customer(sender, e);
+            ticket_account_customer(sender, e);
             subscribed_plans_months(sender, e);
         }
 
@@ -195,7 +195,7 @@ namespace DatabasesWebProjectMilestone3
 
 
 
-        protected void ticket_amount_customer(object sender, EventArgs e)
+        protected void ticket_account_customer(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
