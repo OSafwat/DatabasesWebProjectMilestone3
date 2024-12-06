@@ -8,6 +8,7 @@ using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Reflection.Emit;
 
 namespace DatabasesWebProjectMilestone3
 {
@@ -85,13 +86,31 @@ namespace DatabasesWebProjectMilestone3
             consumptionFunction.Parameters.Add(start_date);
             consumptionFunction.Parameters.Add(end_date);
 
-            conn.Open();
-            SqlDataAdapter viewAdapter = new SqlDataAdapter(consumptionFunction);
-            DataTable customerData = new DataTable();
-            viewAdapter.Fill(customerData);
+            try
+            {
+                conn.Open();
+                SqlDataAdapter viewAdapter = new SqlDataAdapter(consumptionFunction);
+                DataTable customerData = new DataTable();
+                viewAdapter.Fill(customerData);
 
-            consumption_data.DataSource = customerData;
-            consumption_data.DataBind();
+                consumption_data.DataSource = customerData;
+                consumption_data.DataBind();
+            } catch (Exception e1)
+            {
+                if (plan_name.Size == 0 || start_date.Size == 0 || end_date.Size == 0)
+                {
+                    consumption_data_response.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
+                {
+                    consumption_data_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                conn.Close();
+                return;
+            }
+            consumption_data_response.Text = "Success!";
             conn.Close();
         }
 
@@ -237,9 +256,20 @@ namespace DatabasesWebProjectMilestone3
             SqlCommand remainingPlanAmountFunc = new SqlCommand(funcQuery, conn);
             remainingPlanAmountFunc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
             remainingPlanAmountFunc.Parameters.Add(new SqlParameter("@plan_name", remaining_plan_amount_plan_name_input.Text));
-            conn.Open();
-
-            int result = (int)remainingPlanAmountFunc.ExecuteNonQuery();
+            //remaining_plan_amount_response
+            int result = 0;
+            try
+            {
+                conn.Open();
+                result = (int)remainingPlanAmountFunc.ExecuteNonQuery();
+            } catch (Exception e1)
+            {
+                remaining_plan_amount_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                conn.Close();
+                return;
+            }
+            remaining_plan_amount_response.Text = "Success!";
             remaining_plan_amount_result.Text = "Remaining Amount: " + result;
 
             conn.Close();
@@ -257,7 +287,20 @@ namespace DatabasesWebProjectMilestone3
             extraPlanAmountFunc.Parameters.Add(new SqlParameter("@plan_name", extra_plan_amount_plan_name_input.Text));
             conn.Open();
 
-            int result = (int)extraPlanAmountFunc.ExecuteNonQuery();
+            int result = 0;
+            try
+            {
+                conn.Open();
+                result = (int)extraPlanAmountFunc.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                extra_plan_amount_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                conn.Close();
+                return;
+            }
+            extra_plan_amount_response.Text = "Success!";
             extra_plan_amount_result.Text = "Extra Amount: " + result;
 
             conn.Close();
@@ -340,16 +383,44 @@ namespace DatabasesWebProjectMilestone3
             string procQuery = "Initiate_plan_payment";
             SqlCommand initiatePlanPaymentProc = new SqlCommand(procQuery, conn);
 
+            try
+            {
+                int z = Int16.Parse(initiate_plan_payment_plan_ID_input.Text);
+                double x = Double.Parse(initiate_plan_payment_amount_input.Text);
+            } catch (Exception e1)
+            {
+                initiate_plan_payment_response.Text = "The amount input should be a number, and the plan ID should be an integer. Please try again.";
+                return;
+            }
+
             initiatePlanPaymentProc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
             initiatePlanPaymentProc.Parameters.Add(new SqlParameter("@amount", Double.Parse(initiate_plan_payment_amount_input.Text)));
             initiatePlanPaymentProc.Parameters.Add(new SqlParameter("@payment_method", initiate_plan_payment_payment_method_input.Text));
-            initiatePlanPaymentProc.Parameters.Add(new SqlParameter("@plan_id", initiate_plan_payment_plan_ID_input.Text));
+            initiatePlanPaymentProc.Parameters.Add(new SqlParameter("@plan_id", Int16.Parse(initiate_plan_payment_plan_ID_input.Text)));
 
             initiatePlanPaymentProc.CommandType = CommandType.StoredProcedure;
 
-            conn.Open();
-
-            initiatePlanPaymentProc.ExecuteNonQuery();
+            try
+            {
+                conn.Open();
+                initiatePlanPaymentProc.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                if (initiate_balance_payment_payment_method_input.Text.Length == 0)
+                {
+                    initiate_plan_payment_response.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
+                {
+                    initiate_plan_payment_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                conn.Close();
+                return;
+            }
+            initiate_plan_payment_response.Text = "Success!";
 
             conn.Close();
         }
@@ -363,16 +434,40 @@ namespace DatabasesWebProjectMilestone3
             string procQuery = "Initiate_balance_payment";
             SqlCommand initiateBalancePaymentProc = new SqlCommand(procQuery, conn);
 
+            try
+            {
+                Double z = Double.Parse(initiate_balance_payment_amount_input.Text);
+            } catch (Exception e1)
+            {
+                initiate_balance_payment_response.Text = "The amount input should be a number. Please try again.";
+                return;
+            }
+
             initiateBalancePaymentProc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
             initiateBalancePaymentProc.Parameters.Add(new SqlParameter("@amount", Double.Parse(initiate_balance_payment_amount_input.Text)));
             initiateBalancePaymentProc.Parameters.Add(new SqlParameter("@payment_method", initiate_balance_payment_payment_method_input.Text));
 
             initiateBalancePaymentProc.CommandType = CommandType.StoredProcedure;
 
-            conn.Open();
-
-            initiateBalancePaymentProc.ExecuteNonQuery();
-
+            try
+            {
+                conn.Open();
+                initiateBalancePaymentProc.ExecuteNonQuery();
+            } catch (Exception e1)
+            {
+                if (initiate_balance_payment_payment_method_input.Text.Length == 0)
+                {
+                    initiate_balance_payment_response.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                } else
+                {
+                    initiate_balance_payment_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                conn.Close();
+                return;
+            }
+            initiate_balance_payment_response.Text = "Success!";
             conn.Close();
         }
 
@@ -385,15 +480,31 @@ namespace DatabasesWebProjectMilestone3
             string procQuery = "Redeem_voucher_points";
             SqlCommand redeemVoucherPaymentsProc = new SqlCommand(procQuery, conn);
 
+            try
+            {
+                int z = Int16.Parse(redeem_voucher_points_voucher_id_input.Text);
+            } catch (Exception e1)
+            {
+                redeem_voucher_points_response.Text = "The plan ID input should be an integer. Please try again.";
+                return;
+            }
+
             redeemVoucherPaymentsProc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
-            redeemVoucherPaymentsProc.Parameters.Add(new SqlParameter("@voucher_id", redeem_voucher_points_voucher_id_input.Text));
+            redeemVoucherPaymentsProc.Parameters.Add(new SqlParameter("@voucher_id", Int16.Parse(redeem_voucher_points_voucher_id_input.Text)));
 
             redeemVoucherPaymentsProc.CommandType = CommandType.StoredProcedure;
-
-            conn.Open();
-
-            redeemVoucherPaymentsProc.ExecuteNonQuery();
-
+            try
+            {
+                conn.Open();
+                redeemVoucherPaymentsProc.ExecuteNonQuery();
+            } catch (Exception e1)
+            {
+                redeem_voucher_points_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                conn.Close();
+                return;
+            }
+            redeem_voucher_points_response.Text = "Success!";
             conn.Close();
         }
 

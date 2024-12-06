@@ -24,6 +24,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// customer_intro_label control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox consumption_display_end_date_input;
+
+        /// <summary>
+        /// consumption_data_response control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label consumption_data_response;
 
         /// <summary>
         /// consumption_data control.
@@ -258,6 +276,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox remaining_plan_amount_plan_name_input;
 
         /// <summary>
+        /// remaining_plan_amount_response control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label remaining_plan_amount_response;
+
+        /// <summary>
         /// remaining_plan_amount_result control.
         /// </summary>
         /// <remarks>
@@ -292,6 +319,15 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox extra_plan_amount_plan_name_input;
+
+        /// <summary>
+        /// extra_plan_amount_response control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label extra_plan_amount_response;
 
         /// <summary>
         /// extra_plan_amount_result control.
@@ -420,6 +456,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox initiate_plan_payment_plan_ID_input;
 
         /// <summary>
+        /// initiate_plan_payment_response control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label initiate_plan_payment_response;
+
+        /// <summary>
         /// Label15 control.
         /// </summary>
         /// <remarks>
@@ -465,6 +510,24 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox initiate_balance_payment_payment_method_input;
 
         /// <summary>
+        /// initiate_balance_payment_response control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label initiate_balance_payment_response;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// Label16 control.
         /// </summary>
         /// <remarks>
@@ -490,5 +553,14 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox redeem_voucher_points_voucher_id_input;
+
+        /// <summary>
+        /// redeem_voucher_points_response control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label redeem_voucher_points_response;
     }
 }
