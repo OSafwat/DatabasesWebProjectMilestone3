@@ -232,6 +232,27 @@
 
 
 
+
+        <div class="">
+            <asp:Label runat="server" Text="If you would like to get the amount of cashback 
+                that will be returned to your wallet, then input the payment ID and the benefit ID, then press this button. The result will be shown below!" ID="Label7"></asp:Label>
+            <br />
+            <br />
+            <asp:Label runat="server" Text="Payment ID: " ID="Label8"></asp:Label>
+            <asp:TextBox runat="server" ID="payment_wallet_cashback_payment_ID_input"></asp:TextBox>
+            <br />
+            <asp:Label runat="server" Text="Benefit ID: " ID="Label18"></asp:Label>
+            <asp:TextBox runat="server" ID="payment_wallet_cashback_benefit_ID_input"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label runat="server" ID="payment_wallet_cashback_response"></asp:Label> <br />
+            <asp:Button runat="server" Text="Obtain Amount" OnClick="payment_wallet_cashback"></asp:Button>&nbsp;</div>
+            <br />
+            <br />
+            <asp:Label runat="server" Text="Result:" ID="payment_wallet_cashback_result"></asp:Label>
+        <br />
+            <br />
+
     </form>
 </body>
 </html>

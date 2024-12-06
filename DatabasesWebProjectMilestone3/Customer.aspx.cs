@@ -510,5 +510,55 @@ namespace DatabasesWebProjectMilestone3
             
         }
 
+
+        protected void payment_wallet_cashback(object sender, EventArgs e)
+        {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
+
+            string procQuery = "Payment_wallet_cashback_corrected";
+            SqlCommand paymentWalletCashbackProc = new SqlCommand(procQuery, conn);
+
+            try
+            {
+                int z = Int16.Parse(payment_wallet_cashback_payment_ID_input.Text);
+                int x = Int16.Parse(payment_wallet_cashback_benefit_ID_input.Text);
+            }
+            catch (Exception e1)
+            {
+                payment_wallet_cashback_response.Text = "The plan ID and benefit ID inputs should be integers. Please try again.";
+                return;
+            }
+
+            paymentWalletCashbackProc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
+            paymentWalletCashbackProc.Parameters.Add(new SqlParameter("@payment_id", Int16.Parse(payment_wallet_cashback_payment_ID_input.Text)));
+            paymentWalletCashbackProc.Parameters.Add(new SqlParameter("@benefit_id", Int16.Parse(payment_wallet_cashback_benefit_ID_input.Text)));
+
+            paymentWalletCashbackProc.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter output = new SqlParameter("@cashback_amount", SqlDbType.Decimal);
+
+            output.Direction = ParameterDirection.Output;
+
+            paymentWalletCashbackProc.Parameters.Add(output);
+
+
+            try
+            {
+                conn.Open();
+                paymentWalletCashbackProc.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                conn.Close();
+                payment_wallet_cashback_response.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                return;
+            }
+            payment_wallet_cashback_response.Text = "Success!";
+            payment_wallet_cashback_result.Text = "Result: " + output.Value;
+            conn.Close();
+
+        }
     }
 }
