@@ -69,13 +69,29 @@ namespace DatabasesWebProjectMilestone3
 
         protected void create_account_function(object sender, EventArgs e)
         {
+            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
+            SqlConnection conn = new SqlConnection(connStr);
             string password = password_input.Text;
             string account_type = account_type_input.SelectedValue;
             string mobile_number = generate_mobile_number();
             string national_ID = national_id_input_2.Text;
 
-            String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
-            SqlConnection conn = new SqlConnection(connStr);
+            string nationalIDVerification = "SELECT COUNT(*) FROM Customer_profile WHERE nationalID = " + national_ID + ";";
+            SqlCommand nationalIDVerificationCommand = new SqlCommand(nationalIDVerification, conn);
+
+            conn.Open();
+
+            bool result = (int)nationalIDVerificationCommand.ExecuteNonQuery() == 0;
+
+            conn.Close();
+
+            if (!result)
+            {
+                Response.Write("This national ID does not exist. Please sign up to create a new profile.");
+                return;
+            }
+
+
 
 
             string createAccountQuery = "INSERT INTO Customer_Account ('" + mobile_number + "', '" + password + "', 0.0, '" + account_type + "', GETDATE(), 'Active', 0, " + national_ID + ")";
@@ -128,7 +144,7 @@ namespace DatabasesWebProjectMilestone3
 
             conn.Close();
 
-            if (!result)
+            if (result)
             {
                 Response.Write("This national ID already exists in our database, please create an account instead of " +
                     "signing up again, or try a different national ID.");
