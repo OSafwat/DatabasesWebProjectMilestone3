@@ -17,7 +17,7 @@
         <asp:HiddenField ID="HiddenFieldNationalID" runat="server" />
         
             <asp:Label runat="server" Text="Service Plan Data" ID="service_plans_label"></asp:Label>
-            <br />
+            <br /> <br />
         <div class="">
             <asp:GridView ID="service_plan_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;
@@ -47,7 +47,7 @@
 
         <div class="">
             <asp:Label runat="server" Text="Unsubscribed Plans Data" ID="unsubscribed_plans_label"></asp:Label>
-            <br />
+            <br /> <br />
         <div class="">
             <asp:GridView ID="unsubscribed_plans_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;
@@ -57,7 +57,7 @@
 
         <div class="">
             <asp:Label runat="server" Text="Current Month Active Plans' Usage Data" ID="Label4"></asp:Label>
-            <br />
+            <br /> <br />
         <div class="">
             <asp:GridView ID="active_plans_usage_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;
@@ -66,9 +66,8 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view all of your cashback transactions, press this button. The result will be shown in a table below!" ID="Label5"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View Cashback Transactions" OnClick="cashback_customer_wallet_data_retrieval"></asp:Button>&nbsp;</div>
+            <asp:Label runat="server" Text="Wallet Cashback Data" ID="Label5"></asp:Label>
+            <br /> <br />
         <br />
         <div class="">
             <asp:GridView ID="cashback_customer_wallet_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -78,9 +77,8 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view all active benefits and their details, press this button. The result will be shown in a table below!" ID="Label6"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View All Active Benefits" OnClick="active_benefits_view"></asp:Button>&nbsp;</div>
+            <asp:Label runat="server" Text="All Benefits Data" ID="Label6"></asp:Label>
+            <br /> <br />
         <br />
         <div class="">
             <asp:GridView ID="active_benefits_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -91,12 +89,10 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view the number of your unresolved tickets, press this button. The result will be shown in a table below!" ID="Label7"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View Number Of Unresolved Tickets" OnClick="ticket_amount_customer"></asp:Button>&nbsp;</div>
+        
         <br />
         <div class="">
-            <asp:Label runat="server" Text="Result:" ID="tickets_amount_customer_result"></asp:Label> 
+            <asp:Label runat="server" Text="Number Of Unresolved Tickets:" ID="tickets_amount_customer_result"></asp:Label> 
             &nbsp;
         </div>
         <br />
@@ -104,12 +100,9 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view the voucher ID of the highest value voucher that you own, press this button. The result will be shown in a table below!" ID="Label8"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View VoucherID Of Highest Value" OnClick="account_highest_voucher"></asp:Button>&nbsp;</div>
         <br />
         <div class="">
-            <asp:Label runat="server" Text="Result:" ID="account_highest_voucher_result"></asp:Label> 
+            <asp:Label runat="server" Text="Highest Voucher Value Available To You:" ID="account_highest_voucher_result"></asp:Label> 
             &nbsp;
         </div>
         <br />
@@ -117,7 +110,7 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view the remaining amount of a certain plan based on the payment initiated by you, press this button. The result will be shown in a table below!" ID="Label9"></asp:Label>
+            <asp:Label runat="server" Text="If you would like to view the remaining amount of a certain plan based on the payment initiated by you, then input the required plan name, then press this button." ID="Label9"></asp:Label>
             <br />
             <asp:Label runat="server" Text="Plan Name: " ID="remaining_plan_amount_plan_name_input_label"></asp:Label>
             <asp:TextBox runat="server" ID="remaining_plan_amount_plan_name_input"></asp:TextBox>
@@ -125,7 +118,7 @@
             <asp:Button runat="server" Text="View Remaining Amount" OnClick="remaining_plan_amount"></asp:Button>&nbsp;</div>
         <br />
         <div class="">
-            <asp:Label runat="server" Text="Result:" ID="remaining_plan_amount_result"></asp:Label> 
+            <asp:Label runat="server" Text="Remaining Amount: " ID="remaining_plan_amount_result"></asp:Label> 
             &nbsp;
         </div>
         <br />
@@ -133,7 +126,7 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view the extra amount of a certain plan based on the payment initiated by you, press this button. The result will be shown in a table below!" ID="Label10"></asp:Label>
+            <asp:Label runat="server" Text="If you would like to view the extra amount of a certain plan based on the payment initiated by you, then input the required plan name, press this button. The result will be shown in a table below!" ID="Label10"></asp:Label>
             <br />
             <asp:Label runat="server" Text="Plan Name: " ID="extra_plan_amount_plan_name_input_label"></asp:Label>
             <asp:TextBox runat="server" ID="extra_plan_amount_plan_name_input"></asp:TextBox>
@@ -141,17 +134,15 @@
             <asp:Button runat="server" Text="View Extra Amount" OnClick="extra_plan_amount"></asp:Button>&nbsp;</div>
         <br />
         <div class="">
-            <asp:Label runat="server" Text="Result:" ID="extra_plan_amount_result"></asp:Label> 
+            <asp:Label runat="server" Text="Extra Amount:" ID="extra_plan_amount_result"></asp:Label> 
             &nbsp;
         </div>
         <br />
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view your top 10 successful payments with the highest value, press this button. The result will be shown in a table below!" ID="Label11"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View Top 10 Payments" OnClick="top_successful_payments"></asp:Button>&nbsp;</div>
-        <br />
+            <asp:Label runat="server" Text="Top 10 Successful Payments" ID="Label11"></asp:Label>
+            <br /> <br />
         <div class="">
             <asp:GridView ID="top_successful_payments_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;
@@ -160,9 +151,8 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view details for all shops, press this button. The result will be shown in a table below!" ID="Label12"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View All Shops" OnClick="shop_data_retrieval"></asp:Button>&nbsp;</div>
+            <asp:Label runat="server" Text="All Shops Data" ID="Label12"></asp:Label>
+            <br /> <br />
         <br />
         <div class="">
             <asp:GridView ID="all_shop_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -172,10 +162,8 @@
 
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view all service plans you've subscribed to in the past 5 months, press this button. The result will be shown in a table below!" ID="Label13"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View Service Plans" OnClick="subscribed_plans_months"></asp:Button>&nbsp;</div>
-        <br />
+            <asp:Label runat="server" Text="Subscribed Plans Data" ID="Label13"></asp:Label>
+            <br /> <br />
         <div class="">
             <asp:GridView ID="subscribed_plans_months_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;

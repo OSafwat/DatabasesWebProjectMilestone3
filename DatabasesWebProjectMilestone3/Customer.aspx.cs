@@ -44,6 +44,7 @@ namespace DatabasesWebProjectMilestone3
                 unsubscribed_plans(sender, e);
                 usage_plan_currentmonth(sender, e);
                 cashback_wallet_customer(sender, e);
+                top_successful_payments(sender, e);
                 all_benefits(sender, e);
                 all_shops(sender, e);
                 conn.Close();
@@ -194,7 +195,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Open();
 
             ticketAmountCustomerProc.ExecuteNonQuery();
-            tickets_amount_customer_result.Text = "Result: " + ticketNumber.Value;
+            tickets_amount_customer_result.Text = "Number Of Unresolved Tickets: " + ticketNumber.Value;
 
             conn.Close();
         }
@@ -221,7 +222,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Open();
 
             accountHighestVoucherProc.ExecuteNonQuery();
-            account_highest_voucher_result.Text = "Result: " + voucherID.Value;
+            account_highest_voucher_result.Text = "Highest Voucher Value Available To You: " + voucherID.Value;
 
             conn.Close();
         }
@@ -239,7 +240,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Open();
 
             int result = (int)remainingPlanAmountFunc.ExecuteNonQuery();
-            remaining_plan_amount_result.Text = "Result: " + result;
+            remaining_plan_amount_result.Text = "Remaining Amount: " + result;
 
             conn.Close();
         }
@@ -257,7 +258,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Open();
 
             int result = (int)extraPlanAmountFunc.ExecuteNonQuery();
-            extra_plan_amount_result.Text = "Result: " + result;
+            extra_plan_amount_result.Text = "Extra Amount: " + result;
 
             conn.Close();
         }
