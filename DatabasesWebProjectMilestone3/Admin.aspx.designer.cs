@@ -33,13 +33,13 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.Label admin_intro_label;
 
         /// <summary>
-        /// customer_account_label control.
+        /// grid_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label customer_account_label;
+        protected global::System.Web.UI.WebControls.Label grid_title;
 
         /// <summary>
         /// customer_account_data control.
@@ -51,13 +51,13 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.GridView customer_account_data;
 
         /// <summary>
-        /// physical_shops_label control.
+        /// Label26 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label physical_shops_label;
+        protected global::System.Web.UI.WebControls.Label Label26;
 
         /// <summary>
         /// physical_shop_voucher_data control.
@@ -69,13 +69,13 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.GridView physical_shop_voucher_data;
 
         /// <summary>
-        /// resolved_tickets_label control.
+        /// Label27 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label resolved_tickets_label;
+        protected global::System.Web.UI.WebControls.Label Label27;
 
         /// <summary>
         /// resolved_tickets_data control.
@@ -87,13 +87,13 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.GridView resolved_tickets_data;
 
         /// <summary>
-        /// accounts_plan_label control.
+        /// Label28 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label accounts_plan_label;
+        protected global::System.Web.UI.WebControls.Label Label28;
 
         /// <summary>
         /// account_plan_data control.
@@ -150,6 +150,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox account_plan_date_date_textbox;
 
         /// <summary>
+        /// Label29 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label29;
+
+        /// <summary>
         /// account_plan_date_data control.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,15 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox account_usage_plan_date_textbox;
+
+        /// <summary>
+        /// Label30 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label30;
 
         /// <summary>
         /// account_usage_plan_data control.
@@ -258,6 +276,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox benefits_account_planID_textbox;
 
         /// <summary>
+        /// Label31 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label31;
+
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -285,13 +312,13 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.TextBox SMS_offers_for_account_mobile_number_textbox;
 
         /// <summary>
-        /// Label100 control.
+        /// Label32 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label100;
+        protected global::System.Web.UI.WebControls.Label Label32;
 
         /// <summary>
         /// SMS_offers_for_account_data control.
@@ -321,6 +348,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.Label Label11;
 
         /// <summary>
+        /// Label33 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label33;
+
+        /// <summary>
         /// customer_wallet_account_data control.
         /// </summary>
         /// <remarks>
@@ -337,6 +373,15 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label9;
+
+        /// <summary>
+        /// Label34 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label34;
 
         /// <summary>
         /// E_shop_voucher_data control.
@@ -357,6 +402,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
+        /// Label35 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label35;
+
+        /// <summary>
         /// account_payment_data control.
         /// </summary>
         /// <remarks>
@@ -373,6 +427,15 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label12;
+
+        /// <summary>
+        /// Label36 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label36;
 
         /// <summary>
         /// cashback_transactions_per_wallet_data control.
@@ -429,6 +492,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.Label account_accepted_payments_total_points;
 
         /// <summary>
+        /// Label37 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label37;
+
+        /// <summary>
         /// Label13 control.
         /// </summary>
         /// <remarks>
@@ -481,6 +553,15 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label15;
+
+        /// <summary>
+        /// Label38 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label38;
 
         /// <summary>
         /// wallet_cashback_data control.
@@ -564,6 +645,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.Label Label18;
 
         /// <summary>
+        /// Label39 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label39;
+
+        /// <summary>
         /// Label20 control.
         /// </summary>
         /// <remarks>
@@ -600,6 +690,15 @@ namespace DatabasesWebProjectMilestone3
         protected global::System.Web.UI.WebControls.Label Label24;
 
         /// <summary>
+        /// Label40 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label40;
+
+        /// <summary>
         /// Label21 control.
         /// </summary>
         /// <remarks>
@@ -634,5 +733,14 @@ namespace DatabasesWebProjectMilestone3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label25;
+
+        /// <summary>
+        /// Label41 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label41;
     }
 }

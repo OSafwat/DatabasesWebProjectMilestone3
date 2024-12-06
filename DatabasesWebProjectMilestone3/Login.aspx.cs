@@ -31,13 +31,21 @@ namespace DatabasesWebProjectMilestone3
 
             loginFunction.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
             loginFunction.Parameters.Add(new SqlParameter("@password", pass));
-
-
+            bool success;
+            try
+            {
+                conn.Open();
+                bool temp = (bool)loginFunction.ExecuteScalar();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("An error has occurred due to invalid input. Please put in a proper input and try again.");
+                return;
+            }
             conn.Open();
-            bool success = (bool)loginFunction.ExecuteScalar();
+            success = (bool)loginFunction.ExecuteScalar();
             conn.Close();
-
-
             if (success)
             {
                 Response.Redirect($"Customer.aspx?mobileNo={Server.UrlEncode(mobileNo)}");
@@ -50,9 +58,10 @@ namespace DatabasesWebProjectMilestone3
                 }
                 else
                 {
-                    Response.Write("Login Failed");
+                    Response.Write("Login failed, mobile number or password is incorrect.");
                 }
             }
+            
         }
     }
 }

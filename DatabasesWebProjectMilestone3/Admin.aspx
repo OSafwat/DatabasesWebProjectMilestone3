@@ -12,10 +12,8 @@
             <asp:Label runat="server" Text="Welcome to the admin page!" ID="admin_intro_label"></asp:Label>
         </div>
         <br />
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view all customer accounts and their customer profiles, press this button. The result will be shown in a table below!" ID="customer_account_label"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View All Customer Accounts" OnClick="customer_data_view"></asp:Button>&nbsp;</div>
+        <asp:Label runat="server" Text="Customer Account Data" ID="grid_title"></asp:Label>
+        <br />
         <br />
         <div class="">
             <asp:GridView ID="customer_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -24,30 +22,24 @@
         <br />
 
         <div class="">
-            <asp:Label runat="server" Text="If you would like to view all physical shops along with their redeemed vouchers, press this button. The result will be shown in a table below!" ID="physical_shops_label"></asp:Label>
+        <asp:Label runat="server" Text="Physical Store Data" ID="Label26"></asp:Label>
             <br />
-        <asp:Button runat="server" Text="View All Shops" OnClick="physical_shop_data_retrieval"></asp:Button>&nbsp;</div>
         <br />
-
         <div class="">
             <asp:GridView ID="physical_shop_voucher_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;</div>
         <br />
 
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view details for all resolved tickets, press this button. The result will be shown in a table below!" ID="resolved_tickets_label"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View All Resolved Tickets" OnClick="resolved_tickets_data_retrieval"></asp:Button>&nbsp;</div>
+        <asp:Label runat="server" Text="Resolved Tickets Data" ID="Label27"></asp:Label>
+        <br />
 
         <div class="">&nbsp;
             <asp:GridView ID="resolved_tickets_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             <br />
         </div>
-
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view details for all accounts along with their service plans, press this button. The result will be shown in a table below!" ID="accounts_plan_label"></asp:Label>
-            <br />
-            <asp:Button runat="server" Text="View All Account-ServicePlan Tuples" OnClick="accounts_service_plans_data_retrieval"></asp:Button>&nbsp;</div>
+        
+        <asp:Label runat="server" Text="Account Plan Data" ID="Label28"></asp:Label>
+        <br />
 
         <div class="">&nbsp;
             <asp:GridView ID="account_plan_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -65,7 +57,10 @@
             <asp:Label runat="server" Text="Date: " ID="date_input_label"></asp:Label>
             <asp:TextBox ID="account_plan_date_date_textbox" runat="server"></asp:TextBox>
             <br />
-            <asp:Button runat="server" Text="View Data" OnClick="account_plan_date_retrieval"></asp:Button>&nbsp;</div>
+            <asp:Button runat="server" Text="View Data" OnClick="account_plan_date"></asp:Button>&nbsp;</div>
+
+        <asp:Label runat="server" Text="" ID="Label29"></asp:Label>
+        <br />
 
         <div class="">&nbsp;
             <asp:GridView ID="account_plan_date_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -83,7 +78,10 @@
             <asp:Label runat="server" Text="Date: " ID="Label3"></asp:Label>
             <asp:TextBox ID="account_usage_plan_date_textbox" runat="server"></asp:TextBox>
             <br />
-            <asp:Button runat="server" Text="View Data" OnClick="account_usage_plan_retrieval"></asp:Button>&nbsp;</div>
+            <asp:Button runat="server" Text="View Data" OnClick="account_usage_plan"></asp:Button>&nbsp;</div>
+
+        <asp:Label runat="server" Text="" ID="Label30"></asp:Label>
+        <br />
 
         <div class="">&nbsp;
             <asp:GridView ID="account_usage_plan_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
@@ -101,7 +99,9 @@
             <asp:Label runat="server" Text="Plan ID: " ID="Label6"></asp:Label>
             <asp:TextBox ID="benefits_account_planID_textbox" runat="server"></asp:TextBox>
             <br />
-            <asp:Button runat="server" Text="View Data" OnClick="remove_plan_benefits_from_account"></asp:Button>&nbsp;</div>
+            <asp:Button runat="server" Text="Remove All Benefits" OnClick="benefits_account"></asp:Button>&nbsp;</div>
+        <asp:Label runat="server" Text="" ID="Label31"></asp:Label>
+        <br />
 
         <br />
 
@@ -112,9 +112,12 @@
             <asp:Label runat="server" Text="Mobile Number: " ID="Label8"></asp:Label>
             <asp:TextBox ID="SMS_offers_for_account_mobile_number_textbox" runat="server"></asp:TextBox>
             <br />
-            <asp:Button runat="server" Text="View Data" OnClick="SMS_offers_for_account"></asp:Button>&nbsp;</div>
+            <asp:Button runat="server" Text="View Data" OnClick="Account_SMS_Offers"></asp:Button>&nbsp;</div>
             <br />
-            <asp:Label runat="server" ID="Label100"></asp:Label>
+
+        <asp:Label runat="server" Text="" ID="Label32"></asp:Label>
+        <br />
+
         <div class="">&nbsp;
             <asp:GridView ID="SMS_offers_for_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             <br />
@@ -128,6 +131,10 @@
             <asp:Button runat="server" Text="View Data" OnClick="customer_wallet_account_view"></asp:Button>&nbsp;</div>
             <br />
             <asp:Label runat="server" ID="Label11"></asp:Label>
+
+                <asp:Label runat="server" Text="" ID="Label33"></asp:Label>
+        <br />
+
         <div class="">&nbsp;
             <asp:GridView ID="customer_wallet_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             <br />
@@ -138,6 +145,9 @@
             <asp:Label runat="server" Text="If you would like to view all E shops along with their redeemed vouchers, press this button. The result will be shown in a table below!" ID="Label9"></asp:Label>
             <br />
         <asp:Button runat="server" Text="View All Shops" OnClick="E_shop_data_retrieval"></asp:Button>&nbsp;</div>
+        <br />
+
+        <asp:Label runat="server" Text="" ID="Label34"></asp:Label>
         <br />
 
         <div class="">
@@ -153,6 +163,9 @@
         <asp:Button runat="server" Text="View Data" OnClick="account_payment_data_retrieval"></asp:Button>&nbsp;</div>
         <br />
 
+        <asp:Label runat="server" Text="" ID="Label35"></asp:Label>
+        <br />
+
         <div class="">
             <asp:GridView ID="account_payment_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;</div>
@@ -163,6 +176,9 @@
             <asp:Label runat="server" Text="If you would like to view the number of cashback transactions per each wallet, press this button. The result will be shown in a table below!" ID="Label12"></asp:Label>
             <br />
         <asp:Button runat="server" Text="View Data" OnClick="cashback_transactions_per_wallet_data_retrieval"></asp:Button>&nbsp;</div>
+        <br />
+
+        <asp:Label runat="server" Text="" ID="Label36"></asp:Label>
         <br />
 
         <div class="">
@@ -183,6 +199,8 @@
             <br />
             <asp:Label runat="server" Text="Total number of earned points: " ID = "account_accepted_payments_total_points"></asp:Label>
             <br />
+        <asp:Label runat="server" Text="" ID="Label37"></asp:Label>
+        <br />
         <asp:Button runat="server" Text="View Data" OnClick="account_accepted_payments_data_retrieval"></asp:Button>&nbsp;</div>
         <br />
 
@@ -201,6 +219,9 @@
             <asp:Button runat="server" Text="View Data" OnClick="wallet_cashback_amount_data_retrieval"></asp:Button>&nbsp;</div>
             <br />
             <asp:Label runat="server" ID="Label15"></asp:Label>
+
+        <asp:Label runat="server" Text="" ID="Label38"></asp:Label>
+        <br />
         <div class="">&nbsp;
             <asp:GridView ID="wallet_cashback_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             <br />
@@ -224,7 +245,9 @@
             <br />
             <asp:Button runat="server" Text="View Data" OnClick="wallet_transfer_amount_data_retrieval"></asp:Button>&nbsp;</div>
             <br />
-            <asp:Label runat="server" ID="Label18"></asp:Label>
+            <asp:Label runat="server" ID="Label18" Text="Result: "></asp:Label>
+        <asp:Label runat="server" Text="" ID="Label39"></asp:Label>
+        <br />
         <div class="">&nbsp;
         </div>
 
@@ -239,6 +262,8 @@
             <asp:Button runat="server" Text="View Data" OnClick="wallet_mobileNo_verification"></asp:Button>&nbsp;</div>
             <br />
             <asp:Label runat="server" ID="Label24"></asp:Label>
+        <asp:Label runat="server" Text="" ID="Label40"></asp:Label>
+        <br />
         <div class="">&nbsp;
         </div>
 
@@ -253,6 +278,8 @@
             <asp:Button runat="server" Text="View Data" OnClick="total_points_account"></asp:Button>&nbsp;</div>
             <br />
             <asp:Label runat="server" ID="Label25"></asp:Label>
+        <asp:Label runat="server" Text="" ID="Label41"></asp:Label>
+        <br />
         <div class="">&nbsp;
         </div>
 

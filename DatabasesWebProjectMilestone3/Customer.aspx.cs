@@ -379,7 +379,7 @@ namespace DatabasesWebProjectMilestone3
             SqlCommand redeemVoucherPaymentsProc = new SqlCommand(procQuery, conn);
 
             redeemVoucherPaymentsProc.Parameters.Add(new SqlParameter("@MobileNo", HiddenFieldMobileNo.Value));
-            redeemVoucherPaymentsProc.Parameters.Add(new SqlParameter("@voucher_id", redeem_voucher_points_voucher_id_input.Text);
+            redeemVoucherPaymentsProc.Parameters.Add(new SqlParameter("@voucher_id", redeem_voucher_points_voucher_id_input.Text));
 
             redeemVoucherPaymentsProc.CommandType = CommandType.StoredProcedure;
 

@@ -14,9 +14,16 @@ namespace DatabasesWebProjectMilestone3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                all_customer_accounts(sender, e);
+                physical_store_vouchers(sender, e);
+                all_resolved_tickets(sender, e);
+                account_plan(sender, e);
+            }
         }
 
-        protected void customer_data_view(object sender, EventArgs e)
+        protected void all_customer_accounts(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -36,7 +43,7 @@ namespace DatabasesWebProjectMilestone3
 
         //PhysicalStoreVouchers
 
-        protected void physical_shop_data_retrieval(object sender, EventArgs e)
+        protected void physical_store_vouchers(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -54,7 +61,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void resolved_tickets_data_retrieval(object sender, EventArgs e)
+        protected void all_resolved_tickets(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -72,7 +79,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
         //Account_Plan
-        protected void accounts_service_plans_data_retrieval(object sender, EventArgs e)
+        protected void account_plan(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -92,14 +99,22 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void account_plan_date_retrieval(object sender, EventArgs e)
+        protected void account_plan_date(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
             string functionQuery = "SELECT * FROM dbo.Account_Plan_date(@Subscription_Date, @Plan_id)";
             SqlCommand account_plan_date_function = new SqlCommand(functionQuery, conn);
-
+            try
+            {
+                int z = Int16.Parse(account_plan_date_service_plan_textbox.Text);
+            }
+            catch (Exception e1)
+            {
+                Label29.Text = "The sevice plan ID input should be an integer. Please try again.";
+                return;
+            }
             int servicePlanId = Int16.Parse(account_plan_date_service_plan_textbox.Text);
             string date = account_plan_date_date_textbox.Text;
 
@@ -107,27 +122,36 @@ namespace DatabasesWebProjectMilestone3
             account_plan_date_function.Parameters.Add(new SqlParameter("@Plan_id", servicePlanId));
 
 
+            try
+            {
+                conn.Open();
+                SqlDataAdapter functionAdapter = new SqlDataAdapter(account_plan_date_function);
+                DataTable accountsPlanDateData = new DataTable();
+                functionAdapter.Fill(accountsPlanDateData);
 
-            conn.Open();
-            SqlDataAdapter functionAdapter = new SqlDataAdapter(account_plan_date_function);
-            DataTable accountsPlanDateData = new DataTable();
-            functionAdapter.Fill(accountsPlanDateData);
+                account_plan_date_data.DataSource = accountsPlanDateData;
+                account_plan_date_data.DataBind();
 
-            account_plan_date_data.DataSource = accountsPlanDateData;
-            account_plan_date_data.DataBind();
+                if (date.Equals(""))
+                    throw new Exception();
+            } catch (Exception e1)
+            {
+                if (account_plan_date_service_plan_textbox.Text.Equals("") || date.Equals("")) {
+                    Label29.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
+                {
+                    Label29.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                return;
+            }
+            Label29.Text = "Success!";
             conn.Close();
         }
 
-        /* c) Retrieve the total usage of the input account on each
-            subscribed plan from a given input date.
-            i) Name: Account_Usage_Plan
-            ii) Type: Table Valued Function
-            iii) Input: MobileNo char(11), from_date date
-            iv) output : Table includes (planID, total data
-            consumed, total minutes used, and total SMS).
-            @MobileNo CHAR(11), @from_date DATE
- */
-        protected void account_usage_plan_retrieval(object sender, EventArgs e)
+        protected void account_usage_plan(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -142,18 +166,33 @@ namespace DatabasesWebProjectMilestone3
             account_usage_plan_function.Parameters.Add(new SqlParameter("@from_date", date));
 
 
+            try
+            {
+                conn.Open();
+                SqlDataAdapter functionAdapter = new SqlDataAdapter(account_usage_plan_function);
+                DataTable accountsPlanDateData = new DataTable();
+                functionAdapter.Fill(accountsPlanDateData);
 
-            conn.Open();
-            SqlDataAdapter functionAdapter = new SqlDataAdapter(account_usage_plan_function);
-            DataTable accountsPlanDateData = new DataTable();
-            functionAdapter.Fill(accountsPlanDateData);
-
-            account_usage_plan_data.DataSource = accountsPlanDateData;
-            account_usage_plan_data.DataBind();
+                account_usage_plan_data.DataSource = accountsPlanDateData;
+                account_usage_plan_data.DataBind();
+            } catch (Exception e1)
+            {
+                if (mobileNo.Length == 0 || date.Length == 0)
+                {
+                    Label30.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                } else
+                {
+                    Label30.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                return;
+            }
+            Label30.Text = "Success!";
             conn.Close();
         }
 
-        protected void remove_plan_benefits_from_account(object sender, EventArgs e)
+        protected void benefits_account(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -163,19 +202,45 @@ namespace DatabasesWebProjectMilestone3
 
             benefits_account_proc.CommandType = CommandType.StoredProcedure;
 
+            try
+            {
+                int z = Int16.Parse(benefits_account_planID_textbox.Text);
+            } catch (Exception e1)
+            {
+                Label31.Text = "The sevice plan ID input should be an integer. Please try again.";
+                return;
+            }
+
             string mobileNo = benefits_account_mobile_number_textbox.Text;
             int ID = Int16.Parse(benefits_account_planID_textbox.Text);
 
             benefits_account_proc.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
             benefits_account_proc.Parameters.Add(new SqlParameter("@planID", ID));
 
+            try
+            {
+                conn.Open();
+                benefits_account_proc.ExecuteNonQuery();
 
-            conn.Open();
-            benefits_account_proc.ExecuteNonQuery();
+            } catch (Exception e1)
+            {
+                if (mobileNo.Length == 0)
+                {
+                    Label31.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
+                {
+                    Label31.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                return;
+            }
             conn.Close();
+            Label31.Text = "Success!";
         }
 
-        protected void SMS_offers_for_account(object sender, EventArgs e)
+        protected void Account_SMS_Offers(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -199,12 +264,21 @@ namespace DatabasesWebProjectMilestone3
             }
             catch (Exception e1)
             {
-                Label100.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
-                    "make sure the database is set up and complete.";
+                if (mobileNo.Length == 0)
+                {
+                    Label32.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
+                {
+                    Label32.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+
                 conn.Close();
                 return;
             }
-            Response.Write("Success!");
+            Label32.Text = "Success";
             conn.Close();
         }
 
