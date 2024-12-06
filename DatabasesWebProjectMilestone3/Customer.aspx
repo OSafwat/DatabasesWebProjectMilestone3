@@ -248,7 +248,6 @@
             <asp:Label runat="server" ID="payment_wallet_cashback_response"></asp:Label> <br />
             <asp:Button runat="server" Text="Obtain Amount" OnClick="payment_wallet_cashback"></asp:Button>&nbsp;</div>
             <br />
-            <br />
             <asp:Label runat="server" Text="Result:" ID="payment_wallet_cashback_result"></asp:Label>
         <br />
             <br />
