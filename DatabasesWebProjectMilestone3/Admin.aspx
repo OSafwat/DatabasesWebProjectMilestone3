@@ -123,62 +123,32 @@
             <br />
         </div>
 
-
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to retrieve details of all wallets along with their customer
-            names, then press this button. The result will be shown in a table below!" ID="customer_wallet_label"></asp:Label>
             <br />
-            <asp:Button runat="server" Text="View Data" OnClick="customer_wallet_account_view"></asp:Button>&nbsp;</div>
-            <br />
-            <asp:Label runat="server" ID="Label11"></asp:Label>
 
-                <asp:Label runat="server" Text="" ID="Label33"></asp:Label>
-        <br />
-
+            <asp:Label runat="server" Text="Customer Wallet Account Data" ID="customer_wallet_account_data_label"></asp:Label> <br /><br />
         <div class="">&nbsp;
             <asp:GridView ID="customer_wallet_account_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             <br />
         </div>
 
-
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view all E shops along with their redeemed vouchers, press this button. The result will be shown in a table below!" ID="Label9"></asp:Label>
-            <br />
-        <asp:Button runat="server" Text="View All Shops" OnClick="E_shop_data_retrieval"></asp:Button>&nbsp;</div>
+        <asp:Label runat="server" Text="E Store Data" ID="Label34"></asp:Label>
         <br />
-
-        <asp:Label runat="server" Text="" ID="Label34"></asp:Label>
         <br />
-
         <div class="">
             <asp:GridView ID="E_shop_voucher_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;</div>
         <br />
 
 
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view details for all payments along with their
- corresponding accounts, press this button. The result will be shown in a table below!" ID="Label10"></asp:Label>
-            <br />
-        <asp:Button runat="server" Text="View Data" OnClick="account_payment_data_retrieval"></asp:Button>&nbsp;</div>
-        <br />
-
-        <asp:Label runat="server" Text="" ID="Label35"></asp:Label>
-        <br />
+        <asp:Label runat="server" Text="Account Payment Data" ID="Label35"></asp:Label>
+        <br /> <br />
 
         <div class="">
             <asp:GridView ID="account_payment_data" runat="server" AutoGenerateColumns="true" CssClass="table"></asp:GridView>
             &nbsp;</div>
         <br />
 
-
-        <div class="">
-            <asp:Label runat="server" Text="If you would like to view the number of cashback transactions per each wallet, press this button. The result will be shown in a table below!" ID="Label12"></asp:Label>
-            <br />
-        <asp:Button runat="server" Text="View Data" OnClick="cashback_transactions_per_wallet_data_retrieval"></asp:Button>&nbsp;</div>
-        <br />
-
-        <asp:Label runat="server" Text="" ID="Label36"></asp:Label>
+        <asp:Label runat="server" Text="Number Of Cashbacks Data" ID="Label36"></asp:Label>
         <br />
 
         <div class="">
@@ -201,7 +171,7 @@
             <br />
         <asp:Label runat="server" Text="" ID="Label37"></asp:Label>
         <br />
-        <asp:Button runat="server" Text="View Data" OnClick="account_accepted_payments_data_retrieval"></asp:Button>&nbsp;</div>
+        <asp:Button runat="server" Text="View Data" OnClick="account_payment_points"></asp:Button>&nbsp;</div>
         <br />
 
 
@@ -275,7 +245,7 @@
             <asp:Label runat="server" Text="Mobile Number: " ID="Label22"></asp:Label>
             <asp:TextBox ID="total_points_account_textbox" runat="server"></asp:TextBox>
             <br />
-            <asp:Button runat="server" Text="View Data" OnClick="total_points_account"></asp:Button>&nbsp;</div>
+            <asp:Button runat="server" Text="Execute Command" OnClick="total_points_account"></asp:Button>&nbsp;</div>
             <br />
             <asp:Label runat="server" ID="Label25"></asp:Label>
         <asp:Label runat="server" Text="" ID="Label41"></asp:Label>

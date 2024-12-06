@@ -20,6 +20,10 @@ namespace DatabasesWebProjectMilestone3
                 physical_store_vouchers(sender, e);
                 all_resolved_tickets(sender, e);
                 account_plan(sender, e);
+                customer_wallet(sender, e);
+                e_store_vouchers(sender, e);
+                account_payments(sender, e);
+                num_of_cashback(sender, e);
             }
         }
 
@@ -177,11 +181,17 @@ namespace DatabasesWebProjectMilestone3
                 account_usage_plan_data.DataBind();
             } catch (Exception e1)
             {
-                if (mobileNo.Length == 0 || date.Length == 0)
+                if (mobileNo.Length < 11)
                 {
-                    Label30.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                    Label30.Text = "An error has occurred. The mobile number input should be at least 11 digits, and the date input should not be empty. Please put in proper" +
                         " inputs then try again.";
-                } else
+                }
+                else if (mobileNo.Length > 11)
+                {
+                    Label30.Text = "An error has occurred. The mobile number input should be at most 11 digits, and the date input should not be empty. Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
                 {
                     Label30.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
@@ -224,16 +234,22 @@ namespace DatabasesWebProjectMilestone3
 
             } catch (Exception e1)
             {
-                if (mobileNo.Length == 0)
+                if (mobileNo.Length < 11)
                 {
-                    Label31.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
-                        " inputs then try again.";
+                    Label31.Text = "An error has occurred. The mobile number input should be at least 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else if (mobileNo.Length > 11)
+                {
+                    Label31.Text = "An error has occurred. The mobile number input should be at most 11 digits. Please put in a proper" +
+                        " input then try again.";
                 }
                 else
                 {
-                    Label31.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                    Label31.Text = "An error has occurred. Please check that the database is deployed and that the input is valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
+                conn.Close();
                 return;
             }
             conn.Close();
@@ -264,14 +280,19 @@ namespace DatabasesWebProjectMilestone3
             }
             catch (Exception e1)
             {
-                if (mobileNo.Length == 0)
+                if (mobileNo.Length < 11)
                 {
-                    Label32.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
-                        " inputs then try again.";
+                    Label32.Text = "An error has occurred. The mobile number input should be at least 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else if (mobileNo.Length > 11)
+                {
+                    Label32.Text = "An error has occurred. The mobile number input should be at most 11 digits. Please put in a proper" +
+                        " input then try again.";
                 }
                 else
                 {
-                    Label32.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                    Label32.Text = "An error has occurred. Please check that the database is deployed and that the input is valid. If there is a valid " +
                         "error message, it will be displayed here: " + e1.Message;
                 }
 
@@ -282,7 +303,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void customer_wallet_account_view(object sender, EventArgs e)
+        protected void customer_wallet(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -299,8 +320,8 @@ namespace DatabasesWebProjectMilestone3
             customer_wallet_account_data.DataBind();
             conn.Close();
         }
-
-        protected void E_shop_data_retrieval(object sender, EventArgs e)
+        
+        protected void e_store_vouchers(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -318,8 +339,8 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-
-        protected void account_payment_data_retrieval(object sender, EventArgs e)
+        
+        protected void account_payments(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -337,7 +358,7 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-        protected void cashback_transactions_per_wallet_data_retrieval(object sender, EventArgs e)
+        protected void num_of_cashback(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -355,8 +376,8 @@ namespace DatabasesWebProjectMilestone3
             conn.Close();
         }
 
-
-        protected void account_accepted_payments_data_retrieval(object sender, EventArgs e)
+        
+        protected void account_payment_points(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -380,23 +401,57 @@ namespace DatabasesWebProjectMilestone3
             acceptedPaymentsAndTotalPointsForAccountInLastYear.Parameters.Add(totalNumberOfAcceptedTransactions);
             acceptedPaymentsAndTotalPointsForAccountInLastYear.Parameters.Add(totalNumberOfPoints);
 
-            conn.Open();
-            acceptedPaymentsAndTotalPointsForAccountInLastYear.ExecuteNonQuery();
+            try
+            {
+
+                conn.Open();
+                acceptedPaymentsAndTotalPointsForAccountInLastYear.ExecuteNonQuery();
+
+            } catch (Exception e1)
+            {
+                if (mobileNo.Length < 11)
+                {
+                    Label37.Text = "An error has occurred. The mobile number input should be at least 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else if (mobileNo.Length > 11)
+                {
+                    Label37.Text = "An error has occurred. The mobile number input should be at most 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else
+                {
+                    Label37.Text = "An error has occurred. Please check that the database is deployed and that the input is valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                conn.Close();
+                return;
+            }
+            Label37.Text = "Success!";
             conn.Close();
-
-
             account_accepted_payments_number.Text = "Number of accepted payment transactions: " + totalNumberOfAcceptedTransactions.Value;
             account_accepted_payments_total_points.Text = "Total number of earned points: " + totalNumberOfPoints.Value;
         }
 
-
-        protected void wallet_cashback_amount_data_retrieval(object sender, EventArgs e)
+        
+        protected void wallet_cashback_amount(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
             string functionQuery = "SELECT dbo.Wallet_Cashback_Amount(@WalletId, @PlanId)";
             SqlCommand wallet_cashback_amount_function = new SqlCommand(functionQuery, conn);
+
+            try
+            {
+                int x = Int16.Parse(wallet_cashback_wallet_id_input.Text);
+                int z = Int16.Parse(wallet_cashback_plan_id_input.Text);
+            } catch (Exception e1)
+            {
+                Label38.Text = "The wallet ID and plan ID inputs should be integers. Please try again.";
+                return;
+            }
+
 
             int walletID = Int16.Parse(wallet_cashback_wallet_id_input.Text);
             int planID = Int16.Parse(wallet_cashback_plan_id_input.Text);
@@ -413,23 +468,33 @@ namespace DatabasesWebProjectMilestone3
             }
             catch (Exception e1)
             {
-                Label15.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
-                    "make sure the database is set up and complete.";
+                Label38.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                    "error message, it will be displayed here: " + e1.Message;
                 conn.Close();
                 return;
             }
-            Response.Write("Success!");
+            Label38.Text = "Success!";
             conn.Close();
         }
 
-
-        protected void wallet_transfer_amount_data_retrieval(object sender, EventArgs e)
+        //continue from here
+        protected void wallet_transfer_amount(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
 
             string functionQuery = "SELECT dbo.Wallet_Transfer_Amount(@WalletId, @PlanId)";
             SqlCommand wallet_transfer_amount_function = new SqlCommand(functionQuery, conn);
+
+            try
+            {
+                int z = Int16.Parse(wallet_cashback_wallet_id_input.Text);
+            } catch (Exception e1)
+            {
+                Label39.Text = "The Wallet Id input should be an integer. Please try again.";
+                return;
+            }
+
 
             int walletID = Int16.Parse(wallet_cashback_wallet_id_input.Text);
             String start_date = wallet_transfer_amount_start_date_input.Text;
@@ -442,23 +507,30 @@ namespace DatabasesWebProjectMilestone3
             conn.Open();
             try
             {
-
                 double res = (double)wallet_transfer_amount_function.ExecuteScalar();
                 Label18.Text = "Result: " + res;
             }
             catch (Exception e1)
             {
-                Label18.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
-                    "make sure the database is set up and complete.";
+                if (start_date.Length == 0 || end_date.Length == 0)
+                {
+                    Label39.Text = "An error has occurred. This is most probably due to your inputs being invalid (empty). Please put in proper" +
+                        " inputs then try again.";
+                }
+                else
+                {
+                    Label39.Text = "An error has occurred. Please check that the database is deployed and that the inputs are valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
                 conn.Close();
                 return;
             }
-            Response.Write("Success!");
+            Label39.Text = "Success!";
             conn.Close();
         }
 
 
-        protected void wallet_mobileNo_verification(object sender, EventArgs e)
+        protected void Wallet_MobileNo(object sender, EventArgs e)
         {
             String connStr = WebConfigurationManager.ConnectionStrings["DatabasesWebsite"].ToString();
             SqlConnection conn = new SqlConnection(connStr);
@@ -479,12 +551,25 @@ namespace DatabasesWebProjectMilestone3
             }
             catch (Exception e1)
             {
-                Label24.Text = "An error has occurred, which could be due to your inputs being incorrect or due to the database tables not being created. Please " +
-                    "make sure the database is set up and complete.";
+                if (mobileNo.Length < 11)
+                {
+                    Label40.Text = "An error has occurred. The mobile number input should be at least 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else if (mobileNo.Length > 11)
+                {
+                    Label40.Text = "An error has occurred. The mobile number input should be at most 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else
+                {
+                    Label40.Text = "An error has occurred. Please check that the database is deployed and that the input is valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
                 conn.Close();
                 return;
             }
-            Response.Write("Success!");
+            Label40.Text = "Success!";
             conn.Close();
         }
 
@@ -502,10 +587,32 @@ namespace DatabasesWebProjectMilestone3
 
             total_points_account_proc.Parameters.Add(new SqlParameter("@MobileNo", mobileNo));
 
-
-            conn.Open();
-            total_points_account_proc.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                conn.Open();
+                total_points_account_proc.ExecuteNonQuery();
+            }
+            catch (Exception e1)
+            {
+                if (mobileNo.Length < 11)
+                {
+                    Label41.Text = "An error has occurred. The mobile number input should be at least 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else if (mobileNo.Length > 11)
+                {
+                    Label41.Text = "An error has occurred. The mobile number input should be at most 11 digits. Please put in a proper" +
+                        " input then try again.";
+                }
+                else
+                {
+                    Label41.Text = "An error has occurred. Please check that the database is deployed and that the input is valid. If there is a valid " +
+                        "error message, it will be displayed here: " + e1.Message;
+                }
+                conn.Close();
+            }
+            Label41.Text = "Success!";
+            conn.Close ();  
         }
 
     }
